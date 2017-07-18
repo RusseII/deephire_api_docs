@@ -17,6 +17,10 @@ dependencies:
     # This builds the code at . into an image named deephire/api_docs:$CIRCLE_BUILD_NUM
     - docker build --rm=false -t "deephire/api_docs:$CIRCLE_BUILD_NUM" .
 
+compile:
+  override:
+    - echo "test"
+
 test:
   override:
 
