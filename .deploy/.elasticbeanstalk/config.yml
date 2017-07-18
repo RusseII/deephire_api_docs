@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: api_docs
+    environment: api-docs
     group_suffix: null
 environment-defaults:
   BackEnd-Production:
