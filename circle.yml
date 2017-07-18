@@ -1,0 +1,44 @@
+
+#commit all this stuff!!
+machine:
+  services:
+    # nothing special, just says we are using docker
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    # installs the eb tool, which is needed to deploy from command line
+    - pip install awsebcli
+    # lots into my docker account to pull private images and push
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    # --rm=false is to keep circleci from getting errors, $CIRCLE_BUILDNUM  
+    # is an environment variable kept by circleci. Used for source control
+    # This builds the code at . into an image named deephire/api_docs:$CIRCLE_BUILD_NUM
+    - docker build --rm=false -t "deephire/api_docs:$CIRCLE_BUILD_NUM" .
+
+test:
+  override:
+
+    # runs tests and passes the enviroment variables stored in cirlceci
+    # runs container detached, exposes port 4567, and passed env variables.  
+    - docker run -d -p 4567:4567 - "deephire/api_docs:$CIRCLE_BUILD_NUM"; sleep 10
+    # pings url to make sure that container started correctly  
+    - curl --retry 10 --retry-delay 5 -v http://localhost:4567/ping
+    
+
+deployment:
+  production:
+    # runs these commands when something is pushed to master 
+    branch: master
+    commands:
+      # pushes to dockerhub 
+      - docker push "deephire/api_docs:$CIRCLE_BUILD_NUM"
+      # updates variable BUILD_NUM with CIRCLE_BUILD env variable
+      - sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
+      # this is needed to set aws login keys 
+      - bash ./.deploy/setup-eb.sh
+      # goes into folder where Dockerrun.aws.json and .elasticbeanstalk config for
+      # production is stored 
+      - cd .deploy && eb deploy -l $CIRCLE_BUILD_NUM
+
