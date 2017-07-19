@@ -83,6 +83,33 @@ Parameter | Description
 --------- | -----------
 email | The email of the user
 
+## Update an account
+
+
+```shell
+curl "https://api.deephire.io/v1.0/accounts" -X PUT -d '{"user_id": "5969ab2cfd83e97fbcf4e34e"}' -H "Content-Type: application/json"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": True
+}
+```
+
+This endpoint updates a users account.
+
+### HTTP Request
+
+`PUT https://api.deephire.io/v1.0/accounts`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+user_id | The user_id of the user
+
 
 ## Get All Accounts (coming soon)
 
@@ -114,7 +141,7 @@ Remember — DeepHire is AWESOME
 ## Get a Specific Account
 
 ```shell
-curl "https://api.deephire.io/api/accounts/596be7edfd83e97fbcbc3da5"
+curl "https://api.deephire.io/v1.0/accounts/596be7edfd83e97fbcbc3da5"
 ```
 
 
@@ -281,5 +308,72 @@ Parameter | Description
 user_id | The user_id of the user
 text | The question text
 response | The user's response 
+
+# Companies
+
+## Register a company
+
+
+```shell
+curl "https://api.deephire.io/v1.0/companies" -X POST -d '{"email": "russell@deephire.io", "company" : "deephire", "user_id": 5969ab2cfd83e97fbcf4e34e }' -H "Content-Type: application/json"
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+{
+  "company_id": "596eea8e9b4d3900087c2d52"
+}
+```
+
+This endpoint registers a company.
+
+### HTTP Request
+
+`POST https://api.deephire.io/v1.0/companies`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+email | The email of the user (needed to grab domain name)
+company | Company name
+user_id | user_id of the employee who works at ___ company
+
+## Get all data about a specific company
+
+
+```shell
+curl "https://api.deephire.io/v1.0/companies/<company_id>"
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+{
+            "_id": "596e67ecfd83e97fbcaaec03",
+            "company": "deephire",
+            "number_of_employees": 2,
+            "employees": [{"user_id": "tempid"}],
+            "questions": [{"creator": "Deephire",
+                           "metric": "Recognition",
+                           "sub_metric": "Recognition Frequency",
+                           "response": 4,
+                           "text": "I feel I need to be recognized for my work more frequently. "}]
+        
+}
+```
+
+This endpoint gets all data about a company.
+
+### HTTP Request
+
+`GET https://api.deephire.io/v1.0/companies/<company_id>`
+
+
+
+
 
 
