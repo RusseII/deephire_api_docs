@@ -1,114 +1,165 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+Plate
+========
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+[![Pyhton2.7](https://img.shields.io/badge/python-2.7-brightgreen.svg)](https://github.com/Plate-Project/plate)  [![Pyhton3.4](https://img.shields.io/badge/python-3.4-red.svg)](https://github.com/Plate-Project/plate.git)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/b6ab9d0d52ee42a8b2bca2c3ce5bea28)](https://www.codacy.com/app/sh84ahn/plate)
+[![Build Status](https://travis-ci.org/Plate-Project/plate.svg?branch=master)](https://travis-ci.org/Plate-Project/plate)
+[![Code Climate](https://codeclimate.com/github/Plate-Project/plate/badges/gpa.svg)](https://codeclimate.com/github/Plate-Project/plate)
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
+
+Plate is API Documentations Tool based on Markdown(md). Convert [Slate](http://tripit.github.io/slate) based on Ruby-Middleman to Python-Flask based. And add some different functions for usages.
+
+![plate](https://farm6.staticflickr.com/5820/21503977290_41beb38dcd_b.jpg)
+
+Example site is [plate-project.github.io](http://plate-project.github.io/). Plate document is [plate.readthedocs.org](http://plate.readthedocs.org/en/latest/index.html).
+
 
 Features
 ------------
 
-* **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [Paypal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
+- **Configuration File(config.json)**
+: Set a title, programming languages for example codes using `config.json` based on JSON Format. Also set the path of the API documents and TOC(Table of contents). Anyone can easily set up.
 
-* **Everything on a single page** — Gone are the days when your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
+- **Support Multi-API documents**
+: [plate](https://github.com/Plate-Project/plate) support multiple API documents(multi markdown format files) for efficient management and amount of documents. As you with,
+use one markdown file or separate markdown files by API or another criterion. Also you can set the output order using TOC(index.json).
 
-* **Slate is just Markdown** — When you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks.
+- **Support dynamic changes of documents**
+: You can update the changes of API documents without restarting server. When web page refresh, if exist any changes, [plate](https://github.com/Plate-Project/plate) reload API documents. Users only focus on writing API documents.
 
-* **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with Github Flavored Markdown.
 
-* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
+- **Make Static HTML**
+:
+Convert Markdown(md) to Static HTML using [jinja2 template](http://jinja.pocoo.org/). Use this on github.io and static html service or offline.
 
-* **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
+- **Multi-Languages Searching**
+: To [support searching various languages](http://plate.readthedocs.org/en/latest/advanced.html#multi-language-search) such as Japanese, French, German, etc, use not only [lunr.js](http://lunrjs.com/) but also [lunr-languages](https://github.com/MihaiValentin/lunr-languages).
 
-* **Let your users update your documentation for you** — By default, your Slate-generated documentation is hosted in a public Github repository. Not only does this mean you get free hosting for your docs with Github Pages, but it also makes it simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to use GitHub, you're also welcome to host your docs elsewhere.
+- **Code Copy**
+: It can be easily copy the example codes without mouse drag and drop, immediately apply this to your codes. Set <code>CLIPBOARD</code> in `config.json`, can copy codes using clicking copy link.
 
-Getting started with Slate is super easy! Simply fork this repository and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://lord.github.io/slate).
 
-Getting Started with Slate
+Plate is very easy for any developers. First of all, follow below **Getting Start**. And then you have any problems, immediately notify(email, issue board, anything). Always, plate is ready for you.
+
+
+Getting Start
 ------------------------------
+
+### Support Python Version
+  - **Python, version 2.7 ~ 3.4**
 
 ### Prerequisites
 
-You're going to need:
+ - **requirements.txt** have all libraries for running plate
+ - If you install using `quick-start.py`, automatically install all libraries.
 
- - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.3.1 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+### Quick Start with Server
 
-### Getting Set Up
+ 1. Clone plate to your hard drive with `git clone https://github.com/Plate-Project/plate.git`
+ 2. `cd plate`
+ 3. Install your API document web pages using `quick-start.py`.
+ 4. Start with server: `python plate.py`
 
-1. Fork this repository on Github.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
+    ```shell
+    > git clone https://github.com/Plate-Project/plate.git
+    > cd plate
+    > python install.py
+    ...
+    Welcome plate v0.2.6
+    Start your API Document system.
 
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
+    Typing API document name :<Typing your project>
+    what is API document name? is "<your project>"
 
-# OR run this to run with vagrant
-vagrant up
+    Rename plate to  "<your project>" ...
+    Complete. Enjoy developing.
+
+    > cd ../<your project>
+    > python plate.py
+    ```
+
+### Quick Start with Static HTML
+Start with static html: `python pst.py -f <conf file>`
+
+    > python pst.py -f config.json
+
+### config.json(configuration file)
+- path : ./config.json
+```json
+{
+    "PORT"               : 8888,
+    "TITLE"              : "API Document",
+    "LOGO_TITLE"         : "API Document",
+    "SEARCH_ON"          : true,
+    "SUPPORT_LANG"       : ["shell", "python"],
+    "API_DOC_PATH"       : "./document",
+    "API_DOC_INDEX_PATH" : "index.json",
+    "COPYRIGHT"          : "© 2016 plate",
+    "FAVICON"            : "favicon.ico",
+    "CLIPBOARD"          : true,
+    "STATIC" : {
+        "DIR" : "./plate_static",
+        "HTML" : "index.html"
+    }
+}
 ```
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
+### index.json(Table of contents)
+- path : ./document/index.json
+```json
+{
+    "ORDER":
+    [
+        "Introduction.md",
+        "Signup.md",
+        "Signin.md"
+    ]
+}
+```
 
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+Version v0.2.6
+--------------
+- V0.2.6
+    - Add Test Cases.
+- V0.2.5
+    - Change basic structures
+    - Add Unit Testing
+- v0.2.4
+    - Apply Sphinx documentation
 
-If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-### Note on JavaScript Runtime
-
-For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
-
-Companies Using Slate
----------------------------------
-
-* [NASA](https://api.nasa.gov)
-* [IBM](https://docs.cloudant.com/api.html)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Appium](http://appium.io/slate/en/master)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [Fidor Bank](http://docs.fidor.de/)
-* [Scale](https://docs.scaleapi.com/)
-
-You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
-
-Need Help? Found a bug?
+More Info
 --------------------
+More Information such as example, usage, internal, advanced is here. [plate.readthedocs.org](http://plate.readthedocs.org/en/latest/index.html)
 
-[Submit an issue](https://github.com/lord/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
 
-Contributors
+
+Contributing
 --------------------
+Any suggestions [submit a issue](https://github.com/Plate-Project/plate/issues).
+Show me the pull requests.
 
-Slate was built by [Robert Lord](https://lord.io) while interning at [TripIt](https://www.tripit.com/).
-
-Thanks to the following people who have submitted major pull requests:
-
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-- [@cvkef](https://github.com/cvkef)
-
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
 
 Special Thanks
---------------------
-- [Middleman](https://github.com/middleman/middleman)
-- [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
-- [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+-----------------
+- [slate](https://github.com/tripit/slate)
+- [pygments](http://pygments.org/)
+- [lunr-languages](https://github.com/MihaiValentin/lunr-languages)
+
+License
+------------
+
+Copyright 2016 Plate
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
