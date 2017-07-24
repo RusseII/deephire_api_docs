@@ -28,7 +28,7 @@ test:
     # runs container detached, exposes port 4567, and passed env variables.  
     - docker run -d -p 4567:4567  "deephire/api_docs:$CIRCLE_BUILD_NUM"; sleep 10
     # pings url to make sure that container started correctly  
-    - curl --retry 10 --retry-delay 5 -v http://localhost:4567/ping
+    - curl --retry 10 --retry-delay 5 -v http://localhost:4567
     
 
 deployment:
