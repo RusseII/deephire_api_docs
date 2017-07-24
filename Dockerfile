@@ -6,5 +6,5 @@ EXPOSE 4567
 
 
 # run the application
-CMD ["python", "./main.py"]
+CMD ["python", "./plate.py"]
 
