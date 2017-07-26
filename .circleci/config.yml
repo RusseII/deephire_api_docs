@@ -47,7 +47,8 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            docker push "deephire/api_docs:$CIRCLE_BUILD_NUM"
-            sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
-            bin/sh ./.deploy/setup-eb.sh
-            cd .deploy && eb deploy -l $CIRCLE_BUILD_NUM
+              docker push "deephire/api_docs:$CIRCLE_BUILD_NUM"
+              sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
+              bin/sh ./.deploy/setup-eb.sh
+              cd .deploy && eb deploy -l $CIRCLE_BUILD_NUM
+            fi
