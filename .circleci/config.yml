@@ -14,7 +14,7 @@ jobs:
               py-pip=9.0.0-r1
             pip install \
               docker-compose==1.12.0 \
-              awscli==1.11.76
+              awsebcli
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
@@ -25,6 +25,10 @@ jobs:
           command: |
             set +o pipefail
             docker load -i /caches/app.tar | true
+       - run:
+          name: Login to dockerhub
+          command: |
+            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: Build application Docker image
           command: |
@@ -33,7 +37,7 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/app.tar app
+            docker save -o /caches/app.tar deephire/api_docs:$CIRCLE_BUILD_NUM
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
