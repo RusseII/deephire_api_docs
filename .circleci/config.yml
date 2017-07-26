@@ -25,7 +25,7 @@ jobs:
           command: |
             set +o pipefail
             docker load -i /caches/app.tar | true
-       - run:
+      - run:
           name: Login to dockerhub
           command: |
             docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
