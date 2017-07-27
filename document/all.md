@@ -78,7 +78,7 @@ curl "https://api.deephire.io/v1.0/accounts" -X PUT -d '{"user_id": "5969ab2cfd8
 
 ```json
 {
-  "success": True
+  "success": true
 }
 ```
 
@@ -155,6 +155,10 @@ curl "https://api.deephire.io/v1.0/accounts/596be7edfd83e97fbcbc3da5"
   }
 }
 ```
+
+> If that user does not exist, response code 204 is returned with no data.
+
+
 
 This endpoint retrieves a specific account.
 
