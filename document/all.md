@@ -11,8 +11,7 @@ Welcome to the DeepHire API!
 
 ```bash
 # With l yobashu can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: $DEEPHIRE_API_KEY"
+curl "api_endpoint_here" -H "Authorization: $DEEPHIRE_API_KEY"
 ```
 
 
@@ -34,7 +33,7 @@ You must replace <code>$DEEPHIRE_API_KEY</code> with your personal API key.
 
 
 ```bash
-curl "https://api.deephire.io/v1.0/accounts" -X POST -d '{"email": "russell@deephire.io"}' -H "Content-Type: application/json" -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/v1.0/accounts" -X POST--d '{"email": "russell@deephire.io"}' -H "Content-Type: application/json" -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 > The above command returns JSON structured like this:
@@ -100,8 +99,7 @@ user_id | The user_id of the user
 
 
 ```bash
-curl "https://deephire.io/api/accounts"
-  -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://deephire.io/api/accounts" -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 
@@ -125,8 +123,7 @@ Remember — DeepHire is AWESOME
 ## Get a Specific Account
 
 ```bash
-curl "https://api.deephire.io/v1.0/accounts/596be7edfd83e97fbcbc3da5"
- -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/v1.0/accounts/596be7edfd83e97fbcbc3da5"--H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 
@@ -179,9 +176,7 @@ user_id | The ID of the account to retrieve
 
 
 ```bash
-curl "https://api.deephire.io/api/accounts/596be7edfd83e9dfbcbc3da5"
-  -X DELETE
-   -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/api/accounts/596be7edfd83e9dfbcbc3da5" -X DELETE -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 > The above command returns JSON structured like this:
@@ -214,8 +209,7 @@ user_id | The ID of the account to delete
 
 
 ```bash
-curl "https://api.deephire.io/v1.0/survey/questions/596be7edfd83e97fbcbc3da5"
- -H "authorization: Bearer $DEEPHIRE_API_KEY"v
+curl "https://api.deephire.io/v1.0/survey/questions/596be7edfd83e97fbcbc3da5" -H"authorization: Bearer $DEEPHIRE_API_KEY"v
 ```
 
 
@@ -265,8 +259,7 @@ Remember — DeepHire is AWESOME
 
 
 ```bash
-curl "https://api.deephire.io/v1.0/answers" -X PUT -d '{"user_id": "5969ab2cfd83e97fbcf4e34e","text": "I feel I need to be recognized for my work more frequently. ","response": 8}' -H "Content-Type: application/json"
- -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/v1.0/answers" -X PUT--d '{"user_id": "5969ab2cfd83e97fbcf4e34e","text": "I feel I need to be recognized for my work more frequently. ","response": 8}' -H "Content-Type: application/json" -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 > The above command returns JSON structured like this:
@@ -306,8 +299,7 @@ response | The user's response
 
 
 ```bash
-curl "https://api.deephire.io/v1.0/companies" -X POST -d '{"email": "russell@deephire.io", "company" : "deephire", "user_id": 5969ab2cfd83e97fbcf4e34e }' -H "Content-Type: application/json"
- -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/v1.0/companies" -X POST--d '{"email": "russell@deephire.io", "company" : "deephire", "user_id": 5969ab2cfd83e97fbcf4e34e }' -H "Content-Type: application/json" -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 > The above command returns JSON structured like this:
@@ -337,8 +329,7 @@ user_id | user_id of the employee who works at ___ company
 
 
 ```bash
-curl "https://api.deephire.io/v1.0/companies/<company_id>"
- -H "authorization: Bearer $DEEPHIRE_API_KEY"
+curl "https://api.deephire.io/v1.0/companies/<company_id>" -H "authorization: Bearer $DEEPHIRE_API_KEY"
 ```
 
 > The above command returns JSON structured like this:
